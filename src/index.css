@@ -1,0 +1,160 @@
+/* ── Design tokens ─────────────────────────────────────────────────────────── */
+:root {
+  --bg:          #06060B;
+  --surface:     #0C0C18;
+  --surface-2:   #111122;
+  --surface-3:   #16162A;
+  --border:      rgba(255,255,255,0.06);
+  --border-md:   rgba(255,255,255,0.10);
+  --border-lg:   rgba(255,255,255,0.16);
+  --text:        #E2E8F0;
+  --text-2:      #8892A4;
+  --text-3:      #4A5568;
+  --text-4:      #1E2535;
+  --blue:        #38BDF8;
+  --indigo:      #818CF8;
+  --red:         #F87171;
+  --orange:      #FB923C;
+  --yellow:      #FBBF24;
+  --green:       #4ADE80;
+  --purple:      #C084FC;
+  --teal:        #2DD4BF;
+}
+
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+  background: var(--bg);
+  background-image:
+    radial-gradient(rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--text);
+  font-family: 'IBM Plex Mono', 'Courier New', monospace;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100%;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+
+/* ── Keyframes ──────────────────────────────────────────────────────────────── */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes fadeUp  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse   { 0%,100% { opacity: 0.35; } 50% { opacity: 1; } }
+@keyframes orbit   { to { transform: rotate(360deg); } }
+@keyframes blink   { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* ── Utility animations ─────────────────────────────────────────────────────── */
+.fade-up   { animation: fadeUp 0.25s ease forwards; }
+.spin      { animation: spin 0.9s linear infinite; }
+.pulse-dot { animation: pulse 1.6s ease-in-out infinite; }
+
+/* ── Interactive states (not possible with inline styles) ───────────────────── */
+.provider-card {
+  transition: border-color 0.18s, background 0.18s, box-shadow 0.18s;
+  cursor: pointer;
+}
+.provider-card:hover {
+  border-color: rgba(56,189,248,0.3) !important;
+  background: rgba(56,189,248,0.05) !important;
+}
+.provider-card.active {
+  border-color: rgba(56,189,248,0.45) !important;
+  background: rgba(56,189,248,0.08) !important;
+  box-shadow: 0 0 0 1px rgba(56,189,248,0.15), inset 0 0 20px rgba(56,189,248,0.04);
+}
+
+.btn-primary {
+  transition: opacity 0.18s, box-shadow 0.18s, transform 0.1s;
+  cursor: pointer;
+}
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.88;
+  box-shadow: 0 6px 28px rgba(56,189,248,0.22);
+  transform: translateY(-1px);
+}
+.btn-primary:active:not(:disabled) { transform: translateY(0); }
+
+.btn-danger {
+  transition: opacity 0.18s, box-shadow 0.18s, transform 0.1s;
+  cursor: pointer;
+}
+.btn-danger:hover:not(:disabled) {
+  opacity: 0.88;
+  box-shadow: 0 6px 28px rgba(248,113,113,0.22);
+  transform: translateY(-1px);
+}
+.btn-danger:active:not(:disabled) { transform: translateY(0); }
+
+.btn-ghost {
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.btn-ghost:hover {
+  color: var(--text) !important;
+  border-color: var(--border-md) !important;
+  background: rgba(255,255,255,0.04) !important;
+}
+
+.example-btn {
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  cursor: pointer;
+}
+.example-btn:hover {
+  color: var(--blue) !important;
+  border-color: rgba(56,189,248,0.3) !important;
+  background: rgba(56,189,248,0.06) !important;
+}
+
+.nav-link { transition: color 0.15s, background 0.15s; }
+.nav-link:hover { background: rgba(255,255,255,0.05) !important; color: var(--text) !important; }
+.nav-link.active { background: var(--surface-2) !important; color: var(--text) !important; }
+
+.tab-btn { transition: color 0.15s; }
+.tab-btn:hover { color: var(--text-2) !important; }
+
+.finding-card {
+  transition: border-color 0.15s, background 0.15s, transform 0.12s;
+  cursor: pointer;
+}
+.finding-card:hover { transform: translateX(3px); }
+
+.key-btn { transition: color 0.15s, border-color 0.15s, background 0.15s; cursor: pointer; }
+.key-btn:hover { border-color: var(--border-md) !important; color: var(--text-2) !important; background: rgba(255,255,255,0.03) !important; }
+
+/* ── Textarea ───────────────────────────────────────────────────────────────── */
+textarea {
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+textarea:focus {
+  outline: none;
+  border-color: rgba(56,189,248,0.35) !important;
+  box-shadow: 0 0 0 3px rgba(56,189,248,0.07), inset 0 0 30px rgba(56,189,248,0.03);
+}
+
+/* Detect-mode textarea focus in orange */
+.detect-area:focus {
+  border-color: rgba(248,113,113,0.35) !important;
+  box-shadow: 0 0 0 3px rgba(248,113,113,0.07), inset 0 0 30px rgba(248,113,113,0.03) !important;
+}
+
+/* ── Loading shimmer bar ────────────────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0.03) 25%,
+    rgba(255,255,255,0.07) 50%,
+    rgba(255,255,255,0.03) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
