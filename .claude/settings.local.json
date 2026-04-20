@@ -6,7 +6,9 @@
       "WebFetch(domain:localhost)",
       "Bash(curl -s http://localhost:5174/)",
       "Bash(start:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npx create-next-app@14 *)",
+      "Bash(npx tsc *)"
     ]
   }
 }
