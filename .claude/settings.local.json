@@ -8,7 +8,8 @@
       "Bash(start:*)",
       "WebSearch",
       "Bash(npx create-next-app@14 *)",
-      "Bash(npx tsc *)"
+      "Bash(npx tsc *)",
+      "Bash(npx jest *)"
     ]
   }
 }
